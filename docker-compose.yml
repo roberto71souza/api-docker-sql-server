@@ -1,0 +1,16 @@
+version: "3"
+services:
+  ms-sql-server:
+    image: mcr.microsoft.com/mssql/server:2019-CU3-ubuntu-18.04
+    environment: 
+      ACCEPT_EULA: "Y" 
+      SA_PASSWORD: "!@12QWqw"
+      MSSQL_PID: "Express"
+    ports: 
+      - "1433:1433"
+  cores-api:
+    build: .
+    environment: 
+      DBservidor: "ms-sql-server"
+    ports: 
+      - "8080:80"
